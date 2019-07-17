@@ -14,6 +14,8 @@ import time
 import datetime
 from time import gmtime, strftime
 from six.moves import xrange
+from PIL import Image
+import imageio
 
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
@@ -81,7 +83,7 @@ def merge(images, size):
 
 def imsave(images, size, path):
   image = np.squeeze(merge(images, size))
-  return scipy.misc.imsave(path, image)
+  return imageio.imwrite(path, image)
 
 def center_crop(x, crop_h, crop_w,
                 resize_h=64, resize_w=64):
@@ -100,7 +102,7 @@ def transform(image, input_height, input_width,
       image, input_height, input_width, 
       resize_height, resize_width)
   else:
-    cropped_image = scipy.misc.imresize(image, [resize_height, resize_width])
+    cropped_image = np.array(Image.fromarray(np.uint8(image)).resize([resize_height, resize_width]))
   return np.array(cropped_image)/127.5 - 1.
 
 def inverse_transform(images):
