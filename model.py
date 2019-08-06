@@ -93,8 +93,10 @@ class DCGAN(object):
       imreadImg = imread(self.data[0])
       if len(imreadImg.shape) >= 3: #check if image is a non-grayscale image by checking channel number
         self.c_dim = imread(self.data[0]).shape[-1]
+        print("[!] Load non-grayscale image")
       else:
         self.c_dim = 1
+        print("[!] Load grayscale image")
 
       if len(self.data) < self.batch_size:
         raise Exception("[!] Entire dataset size is less than the configured batch_size")
@@ -234,6 +236,10 @@ class DCGAN(object):
             batch_images = np.array(batch).astype(np.float32)[:, :, :, None]
           else:
             batch_images = np.array(batch).astype(np.float32)
+
+        # DEBUG
+        print("batch_images:", batch_images.shape)
+        print(batch_images)
 
         batch_z = gen_random(config.z_dist, size=[config.batch_size, self.z_dim]) \
               .astype(np.float32)
