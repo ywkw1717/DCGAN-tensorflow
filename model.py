@@ -237,10 +237,6 @@ class DCGAN(object):
           else:
             batch_images = np.array(batch).astype(np.float32)
 
-        # DEBUG
-        print("batch_images:", batch_images.shape)
-        print(batch_images)
-
         batch_z = gen_random(config.z_dist, size=[config.batch_size, self.z_dim]) \
               .astype(np.float32)
 
@@ -280,6 +276,10 @@ class DCGAN(object):
               self.y: batch_labels
           })
         else:
+          # DEBUG
+          print("batch_images:", batch_images.shape)
+          print(batch_images)
+
           # Update D network
           _, summary_str = self.sess.run([d_optim, self.d_sum],
             feed_dict={ self.inputs: batch_images, self.z: batch_z })
