@@ -189,8 +189,8 @@ class DCGAN(object):
       sample_files = self.data[0:self.sample_num]
       sample = [
           get_image(sample_file,
-                    input_height=self.input_width,
-                    input_width=self.input_height,
+                    input_height=self.input_height,
+                    input_width=self.input_width,
                     resize_height=self.output_height,
                     resize_width=self.output_width,
                     crop=self.crop,
