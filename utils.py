@@ -50,7 +50,7 @@ def save_images(images, size, image_path):
 def imread(path, grayscale = True):
   if (grayscale):
     # return scipy.misc.imread(path, flatten = True).astype(np.float)
-    img = cv2.imread(path, cv2.CV_LOAD_IMAGE_GRAYSCALE)
+    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     print("imread shape: ", img.shape)
     return img.astype(np.float)
   else:
