@@ -51,7 +51,6 @@ def imread(path, grayscale = True):
   if (grayscale):
     # return scipy.misc.imread(path, flatten = True).astype(np.float)
     img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-    print("imread shape: ", img.shape)
     return img.astype(np.float)
   else:
     # Reference: https://github.com/carpedm20/DCGAN-tensorflow/issues/162#issuecomment-315519747
