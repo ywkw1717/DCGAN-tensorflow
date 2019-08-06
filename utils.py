@@ -7,7 +7,6 @@ import json
 import random
 import pprint
 import scipy.misc
-import scipy.ndimage
 import cv2
 import numpy as np
 import os
@@ -51,7 +50,9 @@ def save_images(images, size, image_path):
 def imread(path, grayscale = True):
   if (grayscale):
     # return scipy.misc.imread(path, flatten = True).astype(np.float)
-    return scipy.ndimage.imread(path, flatten = True).astype(np.float)
+    img = cv2.imread(path, cv2.CV_LOAD_IMAGE_GRAYSCALE)
+    print("imread shape: ", img.shape)
+    return img.astype(np.float)
   else:
     # Reference: https://github.com/carpedm20/DCGAN-tensorflow/issues/162#issuecomment-315519747
     img_bgr = cv2.imread(path)
