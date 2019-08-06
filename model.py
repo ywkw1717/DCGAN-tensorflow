@@ -279,6 +279,9 @@ class DCGAN(object):
           # DEBUG
           print("batch_images:", batch_images.shape)
           print(batch_images)
+          batch_images = batch_images.swapaxes(1, 2)
+          print("batch_images2 :", batch_images.shape)
+          print(batch_images)
 
           # Update D network
           _, summary_str = self.sess.run([d_optim, self.d_sum],
