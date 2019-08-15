@@ -321,8 +321,10 @@ class DCGAN(object):
             try:
               # DEBUG
               print("sample_inputs: ", sample_inputs.shape)
-              sample_inputs = sample_inputs.swapaxes(1, 2)
-              print("sample_inputs2: ", sample_inputs.shape)
+              if sample_inputs.shape[1] == 128:
+                  sample_inputs = sample_inputs.swapaxes(1, 2)
+                  print("reshape!")
+                  print("sample_inputs2: ", sample_inputs.shape)
 
               samples, d_loss, g_loss = self.sess.run(
                 [self.sampler, self.d_loss, self.g_loss],
