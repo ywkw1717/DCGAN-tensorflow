@@ -336,7 +336,7 @@ class DCGAN(object):
               print("[Sample] d_loss: %.8f, g_loss: %.8f" % (d_loss, g_loss)) 
 
               # register both loss value
-              loss_register(d_loss, g_loss)
+              loss_register(self.out_dir, d_loss, g_loss)
             except Exception as e:
               print(e)
               print("one pic error!...")
