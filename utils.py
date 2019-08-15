@@ -16,6 +16,7 @@ from time import gmtime, strftime
 from six.moves import xrange
 from PIL import Image
 import imageio
+import csv
 
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
@@ -269,3 +270,9 @@ def image_manifold_size(num_images):
   manifold_w = int(np.ceil(np.sqrt(num_images)))
   assert manifold_h * manifold_w == num_images
   return manifold_h, manifold_w
+
+
+def loss_register(path, d_loss, g_loss):
+    with open(os.path.join(path, 'loss.csv'), 'a') as f:
+        w = csv.writer(f)
+        w.writerow([d_loss, g_loss])
